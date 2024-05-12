@@ -1,0 +1,41 @@
+project_name: shopify-csv-download
+
+before:
+  hooks:
+    - go mod download
+
+release:
+  github:
+    owner: kishaningithub
+    name: shopify-csv-download
+
+builds:
+  - main: ./cmd/shopify-csv-download/main.go
+    binary: shopify-csv-download
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+
+brews:
+  - tap:
+      owner: kishaningithub
+      name: homebrew-tap
+    folder: Formula
+    homepage: https://github.com/kishaningithub/shopify-csv-download
+    description: Download a shopify site in a csv format that the shopify importer understands
+    license: MIT
+
+nfpms:
+  - id: shopify-csv-download
+    package_name: shopify-csv-download
+    homepage: https://github.com/kishaningithub/shopify-csv-download
+    description: Download a shopify site in a csv format that the shopify importer understands
+    license: MIT
+    formats:
+      - apk
+      - deb
+      - rpm
